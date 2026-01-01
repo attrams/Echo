@@ -12,7 +12,7 @@ struct MainTabbarView: View {
 
     var body: some View {
         TabView {
-            Text("Inbox")
+            InboxView()
                 .tabItem {
                     VStack {
                         Image(systemName: "bubble.fill")
