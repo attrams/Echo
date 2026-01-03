@@ -9,7 +9,54 @@ import SwiftUI
 
 struct InboxView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            GeometryReader { proxy in
+                ZStack(alignment: .bottomTrailing) {
+                    List {
+                        ForEach(0..<5) { _ in
+                            InboxRowView(width: proxy.size.width)
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+
+                    Button(action: {}) {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(.darkGray))
+                            .frame(width: 50, height: 50)
+                            .padding()
+                            .overlay {
+                                Image(systemName: "plus.bubble.fill")
+                                    .foregroundStyle(.white)
+                            }
+
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Text("Echo")
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                            .fixedSize(horizontal: true, vertical: false)
+                            .foregroundStyle(.white)
+                            .navigationBarColor(
+                                backgroundColor: Color(.darkGray)
+                            )
+                    }
+                    .sharedBackgroundVisibility(.hidden)
+
+                    ToolbarItem(placement: .topBarTrailing) {
+                        HStack(spacing: 24) {
+                            Image(systemName: "camera")
+                            Image(systemName: "magnifyingglass")
+                            Image(systemName: "ellipsis")
+                        }
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                    }
+                    .sharedBackgroundVisibility(.hidden)
+                }
+            }
+        }
     }
 }
 
